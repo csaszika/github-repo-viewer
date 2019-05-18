@@ -1,35 +1,35 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import {componentTestingSetup} from 'angular-unit-component-driver';
+import {AppComponentDriver} from './app.component.driver';
+import {AppComponent} from './app.component';
+import {RouterTestingModule} from '@angular/router/testing';
+
+const componentSetup = (): AppComponentDriver => {
+  return componentTestingSetup({
+    componentClass: AppComponent,
+    driver: AppComponentDriver,
+    imports: [RouterTestingModule],
+  });
+};
 
 describe('AppComponent', () => {
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
 
-  it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
+  let driver: AppComponentDriver;
+
+  Given(() => {
+    driver = componentSetup();
   });
 
-  it(`should have as title 'github-repo-viewer'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('github-repo-viewer');
-  });
+  describe('Initializing', () => {
+    When(() => {
+      driver.detectChanges();
+    });
 
-  it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to github-repo-viewer!');
+    Then('should be created', () => {
+      expect(driver.componentInstance).toBeTruthy();
+    });
+
+    Then('should have router outlet', () => {
+      expect(driver.routerOutlet).toBeTruthy();
+    });
   });
 });

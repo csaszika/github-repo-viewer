@@ -4,9 +4,10 @@
 module.exports = function (config) {
   config.set({
     basePath: '',
-    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    frameworks: ['jasmine-given', 'jasmine', '@angular-devkit/build-angular'],
     plugins: [
       require('karma-jasmine'),
+      require('karma-jasmine-given'),
       require('karma-chrome-launcher'),
       require('karma-jasmine-html-reporter'),
       require('karma-coverage-istanbul-reporter'),
@@ -18,7 +19,21 @@ module.exports = function (config) {
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../coverage/github-repo-viewer'),
       reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
+      fixWebpackSourcePaths: true,
+      thresholds: {
+        global: {
+          statements: 80,
+          lines: 80,
+          branches: 80,
+          functions: 80
+        },
+        each: {
+          statements: 80,
+          lines: 80,
+          branches: 80,
+          functions: 80
+        }
+      },
     },
     reporters: ['progress', 'kjhtml'],
     port: 9876,
@@ -26,7 +41,13 @@ module.exports = function (config) {
     logLevel: config.LOG_INFO,
     autoWatch: true,
     browsers: ['Chrome'],
+    customLaunchers: {
+      ChromeHeadlessWithoutSandbox: {
+        base: 'ChromeHeadless',
+        flags: ['--no-sandbox']
+      }
+    },
     singleRun: false,
-    restartOnFileChange: true
+    browserDisconnectTolerance: 2,
   });
 };
