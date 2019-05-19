@@ -4,12 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MainNavComponent } from './core/main-nav/main-nav.component';
+import { MainNavComponent } from './frame/main-nav/main-nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule } from '@angular/material';
-import { ShellComponent } from './core/shell/shell.component';
-import { PageNotFoundComponent } from './core/page-not-found/page-not-found.component';
-import { HomeComponent } from './core/home/home.component';
+import { ShellComponent } from './frame/shell/shell.component';
+import { PageNotFoundComponent } from './frame/page-not-found/page-not-found.component';
+import { HomeComponent } from './frame/home/home.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { HomeComponent } from './core/home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,

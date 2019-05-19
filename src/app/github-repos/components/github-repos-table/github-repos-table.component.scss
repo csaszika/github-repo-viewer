@@ -1,0 +1,32 @@
+.full-width-table {
+  width: 100%;
+
+  .name {
+    flex: 0 0 10%;
+  }
+
+  .description {
+    flex: 0 0 30%;
+  }
+
+  .language {
+    flex: 0 0 10%;
+  }
+
+  .stargazers {
+    flex: 0 0 8%;
+  }
+
+  .issues {
+    flex: 0 0 7%;
+    cursor: pointer;
+  }
+
+  .url {
+    flex: 0 0 30%;
+  }
+}
+
+.repository-row:hover {
+  background-color: lightgrey;
+}

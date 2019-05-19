@@ -1,0 +1,47 @@
+<div class="mat-elevation-z8">
+  <table mat-table class="full-width-table" [dataSource]="dataSource" aria-label="Elements">
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell class="name" *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell class="name" *matCellDef="let row">{{row.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <mat-header-cell class="description" *matHeaderCellDef>Description</mat-header-cell>
+      <mat-cell class="description" *matCellDef="let row">{{row.description}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="language">
+      <mat-header-cell class="language" *matHeaderCellDef>Language</mat-header-cell>
+      <mat-cell class="language" *matCellDef="let row">{{row.language}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="stargazers_count">
+      <mat-header-cell class="stargazers" *matHeaderCellDef>Stargazers</mat-header-cell>
+      <mat-cell class="stargazers" *matCellDef="let row">{{row.stargazers_count}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="open_issues">
+      <mat-header-cell class="issues" *matHeaderCellDef>Open issues</mat-header-cell>
+      <mat-cell class="issues"
+                *matCellDef="let row">{{row.open_issues}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="url">
+      <mat-header-cell class="url" *matHeaderCellDef>Url</mat-header-cell>
+      <mat-cell class="url" *matCellDef="let row">{{row.url}}</mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"
+             [@fadeInAnimation]="dataSource?.data.length"
+             class="repository-row"></mat-row>
+  </table>
+
+  <mat-paginator #paginator
+                 [length]="dataSource?.data.length"
+                 [pageIndex]="0"
+                 [pageSize]="10"
+                 [pageSizeOptions]="[10, 25, 50, 100]">
+  </mat-paginator>
+</div>

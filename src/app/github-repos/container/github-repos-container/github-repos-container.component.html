@@ -1,0 +1,8 @@
+<mat-form-field>
+  <mat-label>Search</mat-label>
+  <input matInput
+         [formControl]="search"
+         placeholder="Type repo name to search">
+</mat-form-field>
+
+<app-github-repos-table [githubRepos]="githubRepos"></app-github-repos-table>
