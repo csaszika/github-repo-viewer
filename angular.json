@@ -96,6 +96,7 @@
             "codeCoverageExclude": [
               "**/*.stub.ts",
               "**/*.driver.ts",
+              "**/*-datasource.ts",
               "**/*.spec.ts",
               "**/*.testdata.ts",
               "**/*.mock.ts",
