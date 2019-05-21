@@ -6,6 +6,8 @@ import {MatButtonModule, MatIconModule, MatListModule, MatSidenavModule, MatTool
 import {RouterTestingModule} from '@angular/router/testing';
 import {LayoutModule} from '@angular/cdk/layout';
 
+import {MainRoutes} from '../../shared/routes';
+
 const componentSetup = (): MainNavComponentDriver => {
   return componentTestingSetup({
     componentClass: MainNavComponent,
@@ -43,7 +45,13 @@ describe('MainNavComponent', () => {
     Then('should have home nav item', () => {
       expect(driver.homeNavItem).toBeTruthy();
       expect(driver.homeNavItem.textContent.trim()).toEqual('Home');
-      expect(driver.homeNavItem.getAttribute('href')).toEqual('/home');
+      expect(driver.homeNavItem.getAttribute('href')).toEqual(`/${MainRoutes.HOME}`);
+    });
+
+    Then('should have github repos nav item', () => {
+      expect(driver.githubReposNavItem).toBeTruthy();
+      expect(driver.githubReposNavItem.textContent.trim()).toEqual('Github repos');
+      expect(driver.githubReposNavItem.getAttribute('href')).toEqual(`/${MainRoutes.GITHUB_REPOS}`);
     });
 
     Then('should have menu toggle button', () => {

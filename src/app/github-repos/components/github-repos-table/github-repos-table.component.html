@@ -35,6 +35,7 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"
              [@fadeInAnimation]="dataSource?.data.length"
+             (click)="onRowClick(row.id)"
              class="repository-row"></mat-row>
   </table>
 

@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material';
+
 import {GithubReposTableDataSource} from './github-repos-table-datasource';
 import {GithubRepoItem} from '../../types/github-repo-item';
 import {fadeInAnimation} from '../../../shared/animations';
@@ -14,7 +15,7 @@ import {fadeInAnimation} from '../../../shared/animations';
 export class GithubReposTableComponent implements OnChanges {
   @Input() githubRepos: GithubRepoItem[] = [];
 
-  @Output() openIssues: EventEmitter<string> = new EventEmitter<string>();
+  @Output() rowClick = new EventEmitter<number>();
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -24,5 +25,10 @@ export class GithubReposTableComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.dataSource = new GithubReposTableDataSource(this.githubRepos, this.paginator);
+  }
+
+
+  onRowClick(rowId: number): void {
+    this.rowClick.emit(rowId);
   }
 }

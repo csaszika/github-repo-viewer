@@ -63,6 +63,23 @@ describe('GithubReposTableComponent', () => {
       expect(driver.componentInstance.dataSource).toBeTruthy();
       expect(previousDatasource).toEqual(driver.componentInstance.dataSource);
     });
+  });
 
+  describe('On row click', () => {
+    const githubRepo1 = { id: 'mock1'} as any;
+    let spy;
+
+    Given(() => {
+      spy = spyOn(driver.componentInstance.rowClick, 'emit').and.callThrough();
+    });
+
+    When(() => {
+      driver.detectChanges();
+      driver.componentInstance.onRowClick(githubRepo1.id);
+    });
+
+    Then(() => {
+      expect(spy).toHaveBeenCalledWith(githubRepo1.id);
+    });
   });
 });

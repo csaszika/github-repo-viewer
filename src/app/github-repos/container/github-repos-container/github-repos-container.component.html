@@ -1,8 +1,13 @@
-<mat-form-field>
-  <mat-label>Search</mat-label>
-  <input matInput
-         [formControl]="search"
-         placeholder="Type repo name to search">
-</mat-form-field>
+<div class="search-input">
+  <mat-form-field>
+    <mat-label>Search</mat-label>
+    <input matInput
+           [formControl]="search"
+           placeholder="Type repo name to search">
+  </mat-form-field>
 
-<app-github-repos-table [githubRepos]="githubRepos"></app-github-repos-table>
+  <mat-spinner *ngIf="loading" [diameter]="25" [strokeWidth]="3"></mat-spinner>
+</div>
+
+<app-github-repos-table [githubRepos]="githubRepos"
+                        (rowClick)="onRowClick($event)"></app-github-repos-table>

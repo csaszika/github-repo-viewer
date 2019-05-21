@@ -7,6 +7,10 @@ export class MainNavComponentDriver extends ComponentDriver<MainNavComponent> {
     return this.querySelectorAll('mat-nav-list > a')[0];
   }
 
+  get githubReposNavItem(): HTMLElement {
+    return this.querySelectorAll('mat-nav-list > a')[1];
+  }
+
   get menuToggleButton(): HTMLButtonElement {
     return this.querySelector('button[toggle-menu]');
   }
